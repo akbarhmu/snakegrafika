@@ -24,7 +24,6 @@ void Game::draw(Painter & p) const {
 void Game::setlevel1() {
     field_.newBricks();
     field_.levelWorm();
-    field_.newFruit();
 }
 
 void Game::setlevel2() {
@@ -32,7 +31,6 @@ void Game::setlevel2() {
     field_.newBricks();
     field_.levelWorm();
     field_.levelKobra();
-    field_.newFruit();
 }
 
 void Game::keyEvent(Snake::Direction d) {
