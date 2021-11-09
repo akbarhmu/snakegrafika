@@ -5,6 +5,9 @@
 #include<iostream>
 #include<cstring>
 #include<cstdio>
+
+#include <windows.h>
+#include <mmsystem.h>
 using namespace std;
 Game game;
 
@@ -74,6 +77,7 @@ void display()
 	}    
 
   if (flag2==1) {
+      PlaySound("sounds/lose.wav", NULL, SND_ASYNC|SND_FILENAME);
 	    sprintf(str, "Skor : %d ", sc);
 	    printtext(80,100,str);
 	    if (sc > hsc ) {
