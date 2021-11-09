@@ -101,7 +101,7 @@ void printtext(int x, int y, string String) {
 
     glRasterPos2i(x,y);
     for (int i=0; i<String.size(); i++) {
-        glutBitmapCharacter(GLUT_BITMAP_9_BY_15, String[i]);
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, String[i]);
     }
     glPopAttrib();
     glMatrixMode(GL_PROJECTION);
