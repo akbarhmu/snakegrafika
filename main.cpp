@@ -5,6 +5,9 @@
 #include<iostream>
 #include<cstring>
 #include<cstdio>
+
+#include <windows.h>
+#include <mmsystem.h>
 using namespace std;
 Game game;
 
@@ -44,11 +47,11 @@ void display()
 		  sc = 350 + (sc - 1) * 70;
 		  sprintf(str, "Level : 3");
 	}
-  printtext(170,120,str);
+  printtext(40,20,str);
+  sprintf(str, "Skor : %d", sc);
+  printtext(60,20,str);
   sprintf(str, "Skor Tertinggi : %d", hsc);
-  printtext(170,80,str);
-  sprintf(str, "Skor : %d ", sc);
-  printtext(170,100,str);
+  printtext(80,20,str);
 
   if (sc == 350 && !flag4) {
       flag4 = 1;
@@ -74,12 +77,13 @@ void display()
 	}    
 
   if (flag2==1) {
+      PlaySound("sounds/lose.wav", NULL, SND_ASYNC|SND_FILENAME);
 	    sprintf(str, "Skor : %d ", sc);
 	    printtext(80,100,str);
 	    if (sc > hsc ) {
           hsc = sc;
 			    sprintf(str, "Selamat! Anda mempunyai skor tertinggi");
-			    printtext(70,120,str);
+			    printtext(80,120,str);
 		  } else {
 			    sprintf(str, "Tekan 'e' atau 'E' untuk keluar dari game ");
 			    printtext(80,120,str);
@@ -89,6 +93,7 @@ void display()
       sc = 1;
       l = SLUG;
   }
+  
   Painter p;
   game.draw(p);
   glutSwapBuffers();
@@ -101,7 +106,7 @@ void printtext(int x, int y, string String) {
 
     glRasterPos2i(x,y);
     for (int i=0; i<String.size(); i++) {
-        glutBitmapCharacter(GLUT_BITMAP_9_BY_15, String[i]);
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, String[i]);
     }
     glPopAttrib();
     glMatrixMode(GL_PROJECTION);
@@ -123,7 +128,6 @@ void timer(int x = 0) {
     if (flag == 0) glutTimerFunc(tm, timer, 0);
 }
 
-
 void keyEvent(int key, int, int) {
     switch (key) {
         case GLUT_KEY_LEFT:
@@ -141,13 +145,13 @@ void keyEvent(int key, int, int) {
     }
 }
 
-void myKeyboard(unsigned char key, int mouseX, int mouseY) {		         
+void myKeyboard(unsigned char key, int mouseX, int mouseY) {	
     switch(key) {
       case 'E':
       case 'e':  exit(-1);
           break;
       case 'p': flag = 1;					
-          break;					
+          break;
       default: if (flag) {
             flag = 0;					
             glutTimerFunc(tm, timer, 0);
