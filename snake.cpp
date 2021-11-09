@@ -1,6 +1,8 @@
 #include "snake.hpp"
 #include "field.hpp"
 #include <cstdlib>
+#include <windows.h>
+#include <mmsystem.h>
 
 Snake::Snake(): 
     direction_(static_cast < Direction > (rand() % 4)),
@@ -46,6 +48,7 @@ bool Snake::tick(Field & field) {
         blocks_.pop_back();
     } else 
     {
+        PlaySound("sounds/eat.wav", NULL, SND_ASYNC|SND_FILENAME);
         field.setBlock(Field::SNAKE_BLOCK, p.first, p.second);
 
         field.newFruit();
