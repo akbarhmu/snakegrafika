@@ -79,7 +79,7 @@ void display()
 	    if (sc > hsc ) {
           hsc = sc;
 			    sprintf(str, "Selamat! Anda mempunyai skor tertinggi");
-			    printtext(70,120,str);
+			    printtext(80,120,str);
 		  } else {
 			    sprintf(str, "Tekan 'e' atau 'E' untuk keluar dari game ");
 			    printtext(80,120,str);
